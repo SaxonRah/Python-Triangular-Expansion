@@ -43,7 +43,7 @@ I'm sure a bunch of these examples have logical errors and poorly implemented fu
   
 # Basic TEA 2 with CDT
 ![Basic TEA 2 with CDT](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Basic_TEA_2_with_CDT.png)
-## This is an example of CDT with using Basic_TEA_2.py as a base.
+## This is an example of CDT using Basic_TEA_2.py as a base.
 
 # Simplified TEA Visibility
 ![Simplified TEA Visibility](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Simplified_TEA_Visibility.png)
