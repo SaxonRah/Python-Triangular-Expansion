@@ -83,7 +83,7 @@ def main():
     """
     pygame.init()
     screen = pygame.display.set_mode((GRID_WIDTH * GRID_SIZE, GRID_HEIGHT * GRID_SIZE))
-    pygame.display.set_caption('Grid Visibility')
+    pygame.display.set_caption('Raycast Grid Visibility 2')
     clock = pygame.time.Clock()
     grid = create_grid()
     running = True
