@@ -1,7 +1,6 @@
 import pygame
 import numpy as np
 import math
-from collections import deque
 
 # Constants
 GRID_SIZE = 20
@@ -11,16 +10,19 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRAY = (128, 128, 128)
 RED = (255, 0, 0)
+GREEN = (0, 255, 0)  # Added color green
 
 def create_grid():
     grid = np.zeros((GRID_WIDTH, GRID_HEIGHT), dtype=bool)
     grid[:, :] = np.random.choice([True, False], size=(GRID_WIDTH, GRID_HEIGHT), p=[0.7, 0.3])
     return grid
 
-def draw_grid(screen, grid, visibility):
+def draw_grid(screen, grid, visibility, mouse_pos):
     for x in range(GRID_WIDTH):
         for y in range(GRID_HEIGHT):
-            if visibility[x, y]:
+            if (x, y) == mouse_pos:
+                color = GREEN
+            elif visibility[x, y]:
                 color = WHITE if grid[x, y] else RED
             else:
                 color = GRAY if grid[x, y] else BLACK
@@ -83,7 +85,7 @@ def main():
         visibility = is_visible_from(grid, mouse_pos)
 
         screen.fill(BLACK)
-        draw_grid(screen, grid, visibility)
+        draw_grid(screen, grid, visibility, mouse_pos)
 
         pygame.display.flip()
         clock.tick(30)
