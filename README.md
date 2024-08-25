@@ -8,6 +8,9 @@
 ### Basic TEA
 ![Basic TEA](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Basic_TEA.png)
 
+### Basic TEA 2
+![Basic TEA 2](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Basic_TEA_2.png)
+
 ### Grid Triangulation
 ![Grid Triangulation](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Grid_Triangulation.png)
 
