@@ -40,6 +40,10 @@ I'm sure a bunch of these examples have logical errors and poorly implemented fu
  - Benchmarks and Performance Testing
    - The paper discusses various scenarios (like the Norway and cathedral examples) to benchmark the algorithm's performance. Implement similar test scenarios in the code to evaluate and optimize performance.
    - Create different loadable grid configurations and measure the performance of the implementation vs other scenarios.
+  
+# Basic TEA 2 with CDT
+![Basic TEA 2 with CDT](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Basic_TEA_2_with_CDT.png)
+## This is an example of CDT with using Basic_TEA_2.py as a base.
 
 # Simplified TEA Visibility
 ![Simplified TEA Visibility](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Simplified_TEA_Visibility.png)
