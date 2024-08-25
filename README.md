@@ -23,5 +23,8 @@
 ### Raycast Grid Visibility
 ![Raycast_Grid_Visibility](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Raycast_Grid_Visibility.png)
 
+### Raycast Grid Visibility 2
+![Raycast_Grid_Visibility 2](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Raycast_Grid_Visibility_2.png)
+
 ### Simple Triangulation
 ![Simple Triangulation](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Simple_Triangulation.png)
