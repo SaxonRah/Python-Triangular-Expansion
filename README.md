@@ -1,7 +1,8 @@
 # Python-Triangular-Expansion
 Messing around with TEA (Triangular Expansion Algorithm) from the paper "Efficient Computation of Visibility Polygons".
 
-I'm sure a bunch of these examples have logical errors and poorly implemented functions. None of these actually implement the paper 1 to 1. The closest is probably Basic TEA 2, but this doesn't do a number of things.
+I'm sure a bunch of these examples have logical errors and poorly implemented functions. None of these actually implement the paper 1 to 1. The closest is probably Basic TEA 2, but this doesn't do a number of things. I've added a few additions in two other files, Basic_TEA_2_with_CDT.py and Basic_TEA_3.py
+
 
 # Basic Grid TEA
 ![Basic Grid TEA](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/BasicGridTEA.png)
@@ -44,6 +45,10 @@ I'm sure a bunch of these examples have logical errors and poorly implemented fu
 # Basic TEA 2 with CDT
 ![Basic TEA 2 with CDT](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Basic_TEA_2_with_CDT.png)
 ## This is an example of CDT using Basic_TEA_2.py as a base.
+
+# Basic TEA 3
+![Basic TEA 3](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Basic_TEA_3.png)
+## This is an example of handling the visibility of polygons with antennae using Basic_TEA_2_with_CDT.py as a base.
 
 # Simplified TEA Visibility
 ![Simplified TEA Visibility](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Simplified_TEA_Visibility.png)
