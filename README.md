@@ -3,6 +3,8 @@ Messing around with TEA (Triangular Expansion Algorithm) from the paper "Efficie
 
 I'm sure a bunch of these examples have logical errors and poorly implemented functions. None of these actually implement the paper 1 to 1. The closest is probably Basic TEA 2, but this doesn't do a number of things. I've added a few additions in some other files, Basic_TEA_2_with_CDT.py, Basic_TEA_3.py, and Basic_TEA_3_Performance.py. Basic_TEA_3_Performance is now the closest and best performance (based on feel, no testing was done)
 
+Some of the ideas in other files could be combined with others like for example combining Simplified TEA Visibility and Basic TEA 3 Performance. 
+
 # Basic Grid TEA
 ![Basic Grid TEA](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/BasicGridTEA.png)
 
