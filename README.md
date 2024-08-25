@@ -11,6 +11,9 @@
 ### Basic TEA 2
 ![Basic TEA 2](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Basic_TEA_2.png)
 
+### Simplified TEA Visibility
+![Simplified TEA Visibility](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Simplified_TEA_Visibility.png)
+
 ### Grid Triangulation
 ![Grid Triangulation](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Grid_Triangulation.png)
 
