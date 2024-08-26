@@ -12,6 +12,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
+
 def create_grid():
     """
     Creates a grid with random True (white) and False (black) values.
@@ -19,6 +20,7 @@ def create_grid():
     grid = np.zeros((GRID_WIDTH, GRID_HEIGHT), dtype=bool)
     grid[:, :] = np.random.choice([True, False], size=(GRID_WIDTH, GRID_HEIGHT), p=[0.7, 0.3])
     return grid
+
 
 def get_polygon(x, y):
     """
@@ -29,6 +31,7 @@ def get_polygon(x, y):
     bottom_right = ((x + 1) * GRID_SIZE, (y + 1) * GRID_SIZE)
     bottom_left = (x * GRID_SIZE, (y + 1) * GRID_SIZE)
     return [top_left, top_right, bottom_right, bottom_left]
+
 
 def draw_grid(screen, grid):
     """
@@ -42,18 +45,19 @@ def draw_grid(screen, grid):
                 color = BLACK
             pygame.draw.rect(screen, color, pygame.Rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE))
 
+
 def draw_triangles(screen, grid, mouse_pos):
     """
     Applies triangular expansion algorithm and colors visible and non-visible triangles.
     """
 
-    def is_point_visible(point, mouse_pos, grid):
+    def is_point_visible(point, given_mouse_pos, given_grid):
         """
         Determine if a point is visible from the mouse's position.
         Checks for diagonal walls and stops visibility if two black squares are diagonal to each other.
         Also checks if the point is completely encased by walls.
         """
-        mouse_x, mouse_y = mouse_pos
+        mouse_x, mouse_y = given_mouse_pos
         point_x, point_y = int(point[0] // GRID_SIZE), int(point[1] // GRID_SIZE)
 
         if point_x == mouse_x and point_y == mouse_y:
@@ -64,21 +68,22 @@ def draw_triangles(screen, grid, mouse_pos):
 
         steps = max(abs(dx), abs(dy))
         for i in range(steps):
-            x = int(mouse_x + dx * i / steps)
-            y = int(mouse_y + dy * i / steps)
+            temp_x = int(mouse_x + dx * i / steps)
+            temp_y = int(mouse_y + dy * i / steps)
 
-            if x < 0 or x >= GRID_WIDTH or y < 0 or y >= GRID_HEIGHT:
+            if temp_x < 0 or temp_x >= GRID_WIDTH or temp_y < 0 or temp_y >= GRID_HEIGHT:
                 return False
 
             # Check if the current cell is a black square (blocking visibility)
-            if not grid[x, y]:
+            if not given_grid[temp_x, temp_y]:
                 return False
 
             # Check for diagonal wall scenario
-            if (i < steps - 1):  # Ignore the last step since it is the target point
+            if i < steps - 1:  # Ignore the last step since it is the target point
                 next_x = int(mouse_x + dx * (i + 1) / steps)
                 next_y = int(mouse_y + dy * (i + 1) / steps)
-                if (next_x != x and next_y != y) and (not grid[next_x, y] and not grid[x, next_y]):
+                if ((next_x != temp_x and next_y != temp_y)
+                        and (not given_grid[next_x, temp_y] and not given_grid[temp_x, next_y])):
                     return False
 
         # Explicitly handle diagonal visibility cases
@@ -96,9 +101,9 @@ def draw_triangles(screen, grid, mouse_pos):
             block2_x, block2_y = mouse_x + block2[0], mouse_y + block2[1]
 
             if (
-                    0 <= block1_x < GRID_WIDTH and 0 <= block1_y < GRID_HEIGHT and not grid[block1_x, block1_y]
+                    0 <= block1_x < GRID_WIDTH and 0 <= block1_y < GRID_HEIGHT and not given_grid[block1_x, block1_y]
             ) and (
-                    0 <= block2_x < GRID_WIDTH and 0 <= block2_y < GRID_HEIGHT and not grid[block2_x, block2_y]
+                    0 <= block2_x < GRID_WIDTH and 0 <= block2_y < GRID_HEIGHT and not given_grid[block2_x, block2_y]
             ):
                 return False
 
@@ -131,12 +136,14 @@ def draw_triangles(screen, grid, mouse_pos):
                 color = BLUE if visible2 else RED
                 pygame.draw.polygon(screen, color, triangle2, 1)  # Outline only
 
+
 def draw_mouse(screen, mouse_pos):
     """
     Draws the green square at the mouse position.
     """
     x, y = mouse_pos
     pygame.draw.rect(screen, GREEN, pygame.Rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE))
+
 
 def main():
     """
@@ -165,9 +172,11 @@ def main():
         draw_mouse(screen, mouse_pos)  # Draw the green square for the mouse location
 
         pygame.display.flip()  # Update the display
-        clock.tick(30)  # Limit to 30 FPS
+        clock.tick(60)  # Limit to 30 FPS
+        print(clock.get_fps())
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
