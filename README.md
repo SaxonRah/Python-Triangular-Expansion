@@ -5,7 +5,7 @@ I'm sure a bunch of these examples have logical errors and poorly implemented fu
 
 Some of the ideas in other files could be combined with others like for example combining Simplified TEA Visibility and Basic TEA 3 Performance. I'm sure there are other good combinations you may wish to explore.
 
-I've also implemented d-TEA (Distance-constrained Triangular Expansion Algorithm) from the paper ["Optimizing Mesh to Improve the Triangular Expansion Algorithm for Computing Visibility Regions"](https://www.researchgate.net/publication/378128105_Optimizing_Mesh_to_Improve_the_Triangular_Expansion_Algorithm_for_Computing_Visibility_Regions) in the file "Randomized_dTEA_with_Holes.py" and "Randomized_dTEA_with_Holes_2.py" again, it may have logical errors and poorly implemented functions.
+I've also implemented d-TEA (Distance-constrained Triangular Expansion Algorithm) from the paper ["Optimizing Mesh to Improve the Triangular Expansion Algorithm for Computing Visibility Regions"](https://www.researchgate.net/publication/378128105_Optimizing_Mesh_to_Improve_the_Triangular_Expansion_Algorithm_for_Computing_Visibility_Regions) in the file "Randomized_dTEA_with_Holes.py" and "Randomized_dTEA_with_Holes_2.py" again, it may have logical errors and poorly implemented functions. It should be noted I included two grid based dTEA implementations as well; one unoptimized and one optimized.
 
 
 # Randomized dTEA with Holes
@@ -13,6 +13,12 @@ I've also implemented d-TEA (Distance-constrained Triangular Expansion Algorithm
 
 # Randomized dTEA with Holes 2
 ![Randomized dTEA with Holes 2](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Randomized_dTEA_with_Holes_2.png)
+
+# dTEA on Grid
+![dTEA on Grid](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/dTEA_on_Grid.png)
+
+# Optimized dTEA on Grid 2
+![Optimized dTEA on Grid 2](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Optimized_dTEA_on_Grid_2.png)
 
 # Basic Grid TEA
 ![Basic Grid TEA](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/BasicGridTEA.png)
