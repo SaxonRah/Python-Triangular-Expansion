@@ -5,6 +5,15 @@ I'm sure a bunch of these examples have logical errors and poorly implemented fu
 
 Some of the ideas in other files could be combined with others like for example combining Simplified TEA Visibility and Basic TEA 3 Performance. 
 
+I've also implemented d-TEA (Distance-constrained Triangular Expansion Algorithm) from the paper "Optimizing Mesh to Improve the Triangular Expansion Algorithm for Computing Visibility Regions" in the file "Randomized_dTEA_with_Holes.py" and "Randomized_dTEA_with_Holes_2.py"
+
+
+# Randomized dTEA with Holes
+![Randomized dTEA with Holes](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Randomized_dTEA_with_Holes.png)
+
+# Randomized dTEA with Holes 2
+![Randomized dTEA with Holes 2](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Randomized_dTEA_with_Holes_2.png)
+
 # Basic Grid TEA
 ![Basic Grid TEA](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/BasicGridTEA.png)
 
