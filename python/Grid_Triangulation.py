@@ -51,7 +51,7 @@ def compute_visibility_polygon(grid):
     # Union all white square polygons into a single (or multiple) polygons
     visibility_polygon = unary_union(polygons)
 
-    shapely.simplify(visibility_polygon, tolerance=4, preserve_topology=True)
+    shapely.simplify(visibility_polygon, tolerance=50, preserve_topology=True)
 
     return visibility_polygon
 
@@ -113,7 +113,8 @@ def main():
                          pygame.Rect(observer_pos[0] * GRID_SIZE, observer_pos[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE))
 
         pygame.display.flip()  # Update the display
-        clock.tick(30)  # Limit to 30 FPS
+        clock.tick(60)  # Limit to 30 FPS
+        print(clock.get_fps())
 
     pygame.quit()
 
