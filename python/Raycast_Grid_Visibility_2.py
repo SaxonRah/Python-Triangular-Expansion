@@ -120,7 +120,8 @@ def main():
                          pygame.Rect(observer_pos[0] * GRID_SIZE, observer_pos[1] * GRID_SIZE, GRID_SIZE, GRID_SIZE))
 
         pygame.display.flip()  # Update the display
-        clock.tick(30)  # Limit to 30 FPS
+        clock.tick(60)  # Limit to 30 FPS
+        print(clock.get_fps())
 
     pygame.quit()
 
