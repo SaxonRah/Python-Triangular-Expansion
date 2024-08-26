@@ -13,6 +13,7 @@ GRAY = (50, 50, 50)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
+
 def create_grid():
     """
     Creates a grid with random True (walkable) and False (blocked) values.
@@ -20,6 +21,7 @@ def create_grid():
     grid = np.zeros((GRID_WIDTH, GRID_HEIGHT), dtype=bool)
     grid[:, :] = np.random.choice([True, False], size=(GRID_WIDTH, GRID_HEIGHT), p=[0.7, 0.3])
     return grid
+
 
 def is_visible(grid, observer, target):
     """
@@ -49,6 +51,7 @@ def is_visible(grid, observer, target):
 
     return True
 
+
 def compute_visibility(grid, observer):
     """
     Computes visible cells using a BFS approach from the observer's position.
@@ -69,13 +72,14 @@ def compute_visibility(grid, observer):
             if grid[x, y]:
                 visible_cells.add((x, y))
                 # Check the 4 adjacent cells (up, down, left, right)
-                for nx, ny in [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]:
+                for nx, ny in [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]:
                     if 0 <= nx < GRID_WIDTH and 0 <= ny < GRID_HEIGHT:
                         queue.append((nx, ny))
             else:
                 visible_walls.add((x, y))
 
     return visible_cells, visible_walls
+
 
 def draw_grid(screen, grid, visible_walls):
     """
@@ -89,6 +93,7 @@ def draw_grid(screen, grid, visible_walls):
                 color = WHITE if grid[x, y] else BLACK
             pygame.draw.rect(screen, color, pygame.Rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE))
 
+
 def draw_visible_cells(screen, visible_cells):
     """
     Highlights the visible cells on the screen.
@@ -96,12 +101,14 @@ def draw_visible_cells(screen, visible_cells):
     for (x, y) in visible_cells:
         pygame.draw.rect(screen, BLUE, pygame.Rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE))
 
+
 def draw_observer(screen, observer_pos):
     """
     Draws the observer on the grid as a green square.
     """
     x, y = observer_pos
     pygame.draw.rect(screen, GREEN, pygame.Rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE))
+
 
 def main():
     pygame.init()
@@ -112,11 +119,11 @@ def main():
     observer_pos = (GRID_WIDTH // 2, GRID_HEIGHT // 2)
     visible_cells = set()
     visible_walls = set()
-
-    while True:
+    running = True
+    while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                running = False
             elif event.type == pygame.MOUSEMOTION:
                 mouse_x, mouse_y = event.pos
                 observer_pos = (mouse_x // GRID_SIZE, mouse_y // GRID_SIZE)
@@ -127,8 +134,10 @@ def main():
         draw_visible_cells(screen, visible_cells)
         draw_observer(screen, observer_pos)
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(60)
+        print(clock.get_fps())
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
