@@ -1,6 +1,5 @@
 import pygame
 import numpy as np
-import math
 
 # Constants
 GRID_SIZE = 20
@@ -61,7 +60,8 @@ def get_square_center(mouse_pos):
     mouse_grid_y = (mouse_pos[1] // GRID_SIZE) * GRID_SIZE
     center_x = mouse_grid_x + GRID_SIZE // 2
     center_y = mouse_grid_y + GRID_SIZE // 2
-    return (center_x, center_y)
+    return center_x, center_y
+
 
 def is_visible(point, observer, grid, screen=None):
     """
@@ -95,7 +95,7 @@ def is_visible(point, observer, grid, screen=None):
 
         # Additional check for corner passing
         if ix != observer_grid_x and iy != observer_grid_y:
-            if (not grid[observer_grid_x, iy] and not grid[ix, observer_grid_y]):
+            if not grid[observer_grid_x, iy] and not grid[ix, observer_grid_y]:
                 return False
 
     # Draw a line for visualization if the point is visible
@@ -103,6 +103,7 @@ def is_visible(point, observer, grid, screen=None):
         pygame.draw.line(screen, GREEN, (observer_x, observer_y), (px, py), 1)
 
     return True
+
 
 def draw_triangles(screen, triangles, observer, grid):
     """
@@ -117,8 +118,8 @@ def draw_triangles(screen, triangles, observer, grid):
 
         # Check visibility from the center of the observer's square
         if is_visible(points[0], observer_center, grid, screen) or \
-           is_visible(points[1], observer_center, grid, screen) or \
-           is_visible(points[2], observer_center, grid, screen):
+                is_visible(points[1], observer_center, grid, screen) or \
+                is_visible(points[2], observer_center, grid, screen):
             visible = True
 
         if visible:
@@ -152,6 +153,7 @@ def triangulate_walkable_area(grid):
                 triangles.extend(triangulate_polygon(polygon))
     return triangles
 
+
 def find_observer_triangle(observer_pos, triangles):
     """
     Finds the triangle that contains the observer's position.
@@ -160,6 +162,7 @@ def find_observer_triangle(observer_pos, triangles):
         if point_in_triangle(observer_pos, triangle):
             return triangle
     return None
+
 
 def recursive_visibility_expansion(observer_pos, triangle, triangles, visible_triangles):
     """
@@ -171,16 +174,20 @@ def recursive_visibility_expansion(observer_pos, triangle, triangles, visible_tr
 
     # Find neighboring triangles that share an edge
     for neighbor in find_neighbors(triangle, triangles):
-        if is_visible_from_triangle(observer_pos, neighbor, triangle):
+        # if is_visible_from_triangle(observer_pos, neighbor, triangle):
+        if is_visible_from_triangle():
             recursive_visibility_expansion(observer_pos, neighbor, triangles, visible_triangles)
 
-def is_visible_from_triangle(observer_pos, neighbor, current_triangle):
+
+# def is_visible_from_triangle(observer_pos, neighbor, current_triangle):
+def is_visible_from_triangle():
     """
     Determines if a neighboring triangle is visible from the current triangle.
     """
     # Implement logic to determine if neighbor is visible through the shared edge
     # This typically involves checking angles and intersections
     return True
+
 
 def find_neighbors(triangle, triangles):
     """
@@ -192,6 +199,7 @@ def find_neighbors(triangle, triangles):
             neighbors.append(other)
     return neighbors
 
+
 def shares_edge(triangle1, triangle2):
     """
     Determines if two triangles share an edge.
@@ -199,10 +207,12 @@ def shares_edge(triangle1, triangle2):
     shared_points = set(triangle1) & set(triangle2)
     return len(shared_points) == 2
 
+
 def point_in_triangle(point, triangle):
     """
     Checks if a point is inside a triangle using barycentric coordinates.
     """
+
     def sign(p1, p2, p3):
         return (p1[0] - p3[0]) * (p2[1] - p3[1]) - (p2[0] - p3[0]) * (p1[1] - p3[1])
 
@@ -238,6 +248,7 @@ def draw_visible_triangles(screen, visible_triangles):
         pygame.draw.line(screen, RED, p2, p3, 1)
         pygame.draw.line(screen, RED, p3, p1, 1)
 
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((GRID_WIDTH * GRID_SIZE, GRID_HEIGHT * GRID_SIZE))
@@ -245,13 +256,14 @@ def main():
     clock = pygame.time.Clock()
     grid = create_grid()
     triangles = triangulate_walkable_area(grid)
-    observer_pos = (GRID_WIDTH // 2 * GRID_SIZE, GRID_HEIGHT // 2 * GRID_SIZE)
+    # observer_pos = (GRID_WIDTH // 2 * GRID_SIZE, GRID_HEIGHT // 2 * GRID_SIZE)
     visible_triangles = set()
-
-    while True:
+    running = True
+    while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                running = False
+                # return
             elif event.type == pygame.MOUSEMOTION:
                 observer_pos = event.pos
                 visible_triangles.clear()
@@ -263,7 +275,8 @@ def main():
         draw_grid(screen, grid)
         draw_visible_triangles(screen, visible_triangles)
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(60)
+        print(clock.get_fps())
     pygame.quit()
 
 
