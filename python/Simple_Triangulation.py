@@ -11,6 +11,7 @@ GRAY = (128, 128, 128)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 
+
 def create_grid():
     """
     Creates a grid with random True (white) and False (black) values.
@@ -18,6 +19,7 @@ def create_grid():
     grid = np.zeros((GRID_WIDTH, GRID_HEIGHT), dtype=bool)
     grid[:, :] = np.random.choice([True, False], size=(GRID_WIDTH, GRID_HEIGHT), p=[0.7, 0.3])
     return grid
+
 
 def draw_grid(screen, grid, mouse_pos):
     """
@@ -32,6 +34,7 @@ def draw_grid(screen, grid, mouse_pos):
             else:
                 color = BLACK
             pygame.draw.rect(screen, color, pygame.Rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE))
+
 
 def draw_triangles(screen, grid):
     """
@@ -61,6 +64,7 @@ def draw_triangles(screen, grid):
                 pygame.draw.line(screen, RED, triangle2[1], triangle2[2], 1)
                 pygame.draw.line(screen, RED, triangle2[2], triangle2[0], 1)
 
+
 def main():
     """
     Main function to run the Pygame loop.
@@ -87,9 +91,11 @@ def main():
         draw_triangles(screen, grid)  # Draw the triangle edges
 
         pygame.display.flip()  # Update the display
-        clock.tick(30)  # Limit to 30 FPS
+        clock.tick(60)  # Limit to 30 FPS
+        print(clock.get_fps())
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
