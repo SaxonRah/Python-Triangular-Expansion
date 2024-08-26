@@ -35,19 +35,20 @@ class Triangle:
         b2 = sign(point, self.vertices[1], self.vertices[2]) < 0.0
         b3 = sign(point, self.vertices[2], self.vertices[0]) < 0.0
 
-        return ((b1 == b2) and (b2 == b3))
+        return (b1 == b2) and (b2 == b3)
 
 
 def line_intersects_triangle(p, q, vertices):
-    def ccw(A, B, C):
-        return (C[1] - A[1]) * (B[0] - A[0]) > (B[1] - A[1]) * (C[0] - A[0])
+    def ccw(a, b, c):
+        return (c[1] - a[1]) * (b[0] - a[0]) > (b[1] - a[1]) * (c[0] - a[0])
 
     edges = [(vertices[i], vertices[(i + 1) % len(vertices)]) for i in range(len(vertices))]
 
     for edge in edges:
-        A, B = edge
-        C, D = p, q
-        if ccw(A, C, D) != ccw(B, C, D) and ccw(A, B, C) != ccw(A, B, D):
+        temp_a, temp_b = edge
+        temp_c, temp_d = p, q
+        if (ccw(temp_a, temp_c, temp_d) != ccw(temp_b, temp_c, temp_d) and
+                ccw(temp_a, temp_b, temp_c) != ccw(temp_a, temp_b, temp_d)):
             return True
     return False
 
@@ -78,14 +79,14 @@ def generate_grid(rows, cols, cell_size):
 def d_TEA(triangle, point, visibility_range, visited_triangles, obstacles):
     visible_triangles = []
 
-    def expand(triangle):
-        if triangle in visited_triangles or triangle.is_obstacle:
+    def expand(given_triangle):
+        if given_triangle in visited_triangles or given_triangle.is_obstacle:
             return
-        visited_triangles.add(triangle)
-        visible_triangles.append(triangle)
+        visited_triangles.add(given_triangle)
+        visible_triangles.append(given_triangle)
 
-        for i, edge in enumerate(triangle.edges):
-            neighbor = triangle.neighbors[i]
+        for i, edge in enumerate(given_triangle.edges):
+            neighbor = given_triangle.neighbors[i]
             if not neighbor or neighbor.is_obstacle:
                 continue
 
@@ -127,10 +128,8 @@ def main():
     assign_neighbors(grid)
 
     visibility_range = 200
-    query_point = (300, 300)
-    current_triangle = None
-
-    while True:
+    running = True
+    while running:
         screen.fill(WHITE)
 
         # Get mouse position for moving the query point
@@ -138,8 +137,7 @@ def main():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                running = False
 
         # Find the current triangle the query point is in
         current_triangle = None
@@ -172,6 +170,10 @@ def main():
 
         pygame.display.flip()
         clock.tick(60)
+        print(clock.get_fps())
+
+    pygame.quit()
+    sys.exit()
 
 
 if __name__ == "__main__":
