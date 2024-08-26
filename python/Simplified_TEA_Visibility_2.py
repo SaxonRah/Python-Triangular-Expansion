@@ -1,6 +1,5 @@
 import pygame
 import numpy as np
-import math
 
 # Constants
 GRID_SIZE = 20
@@ -61,7 +60,7 @@ def get_square_center(mouse_pos):
     mouse_grid_y = (mouse_pos[1] // GRID_SIZE) * GRID_SIZE
     center_x = mouse_grid_x + GRID_SIZE // 2
     center_y = mouse_grid_y + GRID_SIZE // 2
-    return (center_x, center_y)
+    return center_x, center_y
 
 
 def is_visible(point, observer, grid, screen=None):
@@ -96,7 +95,7 @@ def is_visible(point, observer, grid, screen=None):
 
         # Additional check for corner passing
         if ix != observer_grid_x and iy != observer_grid_y:
-            if (not grid[observer_grid_x, iy] and not grid[ix, observer_grid_y]):
+            if not grid[observer_grid_x, iy] and not grid[ix, observer_grid_y]:
                 return False
 
     # Draw a line for visualization if the point is visible
@@ -259,13 +258,15 @@ def main():
     clock = pygame.time.Clock()
     grid = create_grid()
     triangles = triangulate_walkable_area(grid)
-    observer_pos = (GRID_WIDTH // 2 * GRID_SIZE, GRID_HEIGHT // 2 * GRID_SIZE)
+    # observer_pos = (GRID_WIDTH // 2 * GRID_SIZE, GRID_HEIGHT // 2 * GRID_SIZE)
     visible_triangles = set()
 
-    while True:
+    running = True
+    while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                # return
+                running = False
             elif event.type == pygame.MOUSEMOTION:
                 observer_pos = event.pos
                 visible_triangles.clear()
@@ -278,7 +279,8 @@ def main():
         draw_grid(screen, grid)
         draw_visible_triangles(screen, visible_triangles)
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(60)
+        print(clock.get_fps())
     pygame.quit()
 
 
