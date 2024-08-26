@@ -1,6 +1,5 @@
 import pygame
 import numpy as np
-import math
 
 # Constants
 GRID_SIZE = 20
@@ -61,7 +60,8 @@ def get_square_center(mouse_pos):
     mouse_grid_y = (mouse_pos[1] // GRID_SIZE) * GRID_SIZE
     center_x = mouse_grid_x + GRID_SIZE // 2
     center_y = mouse_grid_y + GRID_SIZE // 2
-    return (center_x, center_y)
+    return center_x, center_y
+
 
 def is_visible(point, observer, grid, screen=None):
     """
@@ -95,7 +95,7 @@ def is_visible(point, observer, grid, screen=None):
 
         # Additional check for corner passing
         if ix != observer_grid_x and iy != observer_grid_y:
-            if (not grid[observer_grid_x, iy] and not grid[ix, observer_grid_y]):
+            if not grid[observer_grid_x, iy] and not grid[ix, observer_grid_y]:
                 return False
 
     # Draw a line for visualization if the point is visible
@@ -103,6 +103,7 @@ def is_visible(point, observer, grid, screen=None):
         pygame.draw.line(screen, GREEN, (observer_x, observer_y), (px, py), 1)
 
     return True
+
 
 def draw_triangles(screen, triangles, observer, grid):
     """
@@ -117,8 +118,8 @@ def draw_triangles(screen, triangles, observer, grid):
 
         # Check visibility from the center of the observer's square
         if is_visible(points[0], observer_center, grid, screen) or \
-           is_visible(points[1], observer_center, grid, screen) or \
-           is_visible(points[2], observer_center, grid, screen):
+                is_visible(points[1], observer_center, grid, screen) or \
+                is_visible(points[2], observer_center, grid, screen):
             visible = True
 
         if visible:
@@ -185,7 +186,8 @@ def main():
                                      GRID_SIZE, GRID_SIZE))
 
         pygame.display.flip()  # Update the display
-        clock.tick(30)  # Limit to 30 FPS
+        clock.tick(60)  # Limit to 30 FPS
+        print(clock.get_fps())
 
     pygame.quit()
 
