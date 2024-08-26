@@ -7,6 +7,7 @@ Some of the ideas in other files could be combined with others like for example 
 
 I've also implemented d-TEA (Distance-constrained Triangular Expansion Algorithm) from the paper ["Optimizing Mesh to Improve the Triangular Expansion Algorithm for Computing Visibility Regions"](https://www.researchgate.net/publication/378128105_Optimizing_Mesh_to_Improve_the_Triangular_Expansion_Algorithm_for_Computing_Visibility_Regions) in the file "Randomized_dTEA_with_Holes.py" and "Randomized_dTEA_with_Holes_2.py" again, it may have logical errors and poorly implemented functions. It should be noted I included two grid based dTEA implementations as well; one unoptimized and one optimized.
 
+All the examples used Pygame Community Edition, except one "TEA_PySDL2.py" which uses PySDL2. 
 
 # Randomized dTEA with Holes
 ![Randomized dTEA with Holes](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Randomized_dTEA_with_Holes.png)
