@@ -12,10 +12,12 @@ GRAY = (128, 128, 128)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)  # Added color green
 
+
 def create_grid():
     grid = np.zeros((GRID_WIDTH, GRID_HEIGHT), dtype=bool)
     grid[:, :] = np.random.choice([True, False], size=(GRID_WIDTH, GRID_HEIGHT), p=[0.7, 0.3])
     return grid
+
 
 def draw_grid(screen, grid, visibility, mouse_pos):
     for x in range(GRID_WIDTH):
@@ -27,6 +29,7 @@ def draw_grid(screen, grid, visibility, mouse_pos):
             else:
                 color = GRAY if grid[x, y] else BLACK
             pygame.draw.rect(screen, color, pygame.Rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE))
+
 
 def is_visible_from(grid, pos):
     """ Determine visibility using triangular expansion. """
@@ -66,6 +69,7 @@ def is_visible_from(grid, pos):
     expand_triangles()
     return visibility
 
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode((GRID_WIDTH * GRID_SIZE, GRID_HEIGHT * GRID_SIZE))
@@ -88,9 +92,11 @@ def main():
         draw_grid(screen, grid, visibility, mouse_pos)
 
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(60)
+        print(clock.get_fps())
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
