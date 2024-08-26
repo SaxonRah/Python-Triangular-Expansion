@@ -229,7 +229,8 @@ def main():
                          pygame.Rect(observer_pos[0] // GRID_SIZE * GRID_SIZE, observer_pos[1] // GRID_SIZE * GRID_SIZE,
                                      GRID_SIZE, GRID_SIZE))
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(60)
+        print(clock.get_fps())
 
     pygame.quit()
 
