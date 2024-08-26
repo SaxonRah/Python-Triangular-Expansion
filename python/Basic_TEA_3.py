@@ -93,6 +93,7 @@ def is_visible(point, observer, grid, screen=None):
     Draws a line from the observer to the point for debugging purposes, but only if the point is visible.
     Handles cases where the visibility polygon extends into narrow regions, creating "antennae."
     """
+    ix, iy = 0, 0
     observer_x, observer_y = observer
     px, py = point
     dx, dy = px - observer_x, py - observer_y
@@ -205,7 +206,8 @@ def main():
                          pygame.Rect(observer_pos[0] // GRID_SIZE * GRID_SIZE, observer_pos[1] // GRID_SIZE * GRID_SIZE,
                                      GRID_SIZE, GRID_SIZE))
         pygame.display.flip()
-        clock.tick(30)
+        clock.tick(60)
+        print(clock.get_fps())
 
     pygame.quit()
 
