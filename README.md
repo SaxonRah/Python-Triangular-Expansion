@@ -110,7 +110,7 @@ This implementation represents a more advanced approach to visibility determinat
 # Simplified TEA Visibility 2
 ![Simplified TEA Visibility 2](https://github.com/SaxonRah/Python-Triangular-Expansion/blob/main/images/Simplified_TEA_Visibility_2.png)
 
-This implementation is a strong example of applying TEA to a grid-based environment, with accurate and real-time visibility calculations. With some optimizations for performance, handling of edge cases, and additional features like field of view or range limitation, this approach could be highly effective for real-time applications in games, simulations, or other computational geometry tasks.
+This implementation is a strong example of applying TEA to a grid-based environment, with accurate and real-time visibility calculations. With some optimizations for performance, handling of edge cases, and additional features like field of view or range limitation, this approach could be highly effective for real-time applications in games, simulations, or other computational geometry tasks. There is an optimized version using a trapazodial map in Optimized_Simplified_TEA_Visibility_2.py
 -
 
 # Grid Triangulation
